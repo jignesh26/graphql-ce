@@ -2,10 +2,10 @@
 # See COPYING.txt for license details.
 
 type Query {
-    wishlist: WishlistOutput @resolver(class: "\\Magento\\WishlistGraphQl\\Model\\Resolver\\WishlistResolver") @doc(description: "todo")
+    wishlist: Wishlist @resolver(class: "\\Magento\\WishlistGraphQl\\Model\\Resolver\\WishlistResolver") @doc(description: "todo")
 }
 
-type WishlistOutput {
+type Wishlist {
     items: [WishlistItem] @resolver(class: "\\Magento\\WishlistGraphQl\\Model\\Resolver\\WishlistItemsResolver") @doc(description: "todo"),
     sharing_code: String! @doc(description: "todo"),
     updated_at: String! @doc(description: "todo")
@@ -20,13 +20,13 @@ type WishlistItem {
 }
 
 type Mutation {
-    addItemToWishlist (input: AddItemToWishlistInput): AddItemToWishlistOutput @resolver(class: "\\Magento\\WishlistGraphQl\\Model\\Resolver\\AddItemToWishlist") @doc(description:"Add Items by SKUs to the WishList")
+    addItemsToWishlist (input: AddItemToWishlistInput): AddItemToWishlistOutput @resolver(class: "\\Magento\\WishlistGraphQl\\Model\\Resolver\\AddItemToWishlist") @doc(description:"Add Items by SKUs to the Wish list")
 }
 
 input AddItemToWishlistInput {
-    skus: [String!]
+    skus: [String!]!
 }
 
 type AddItemToWishlistOutput {
-    wishlist: WishlistOutput!
+    wishlist: Wishlist!
 }
